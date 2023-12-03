@@ -41,7 +41,7 @@ TuniShop is an e-commerce platform built with Spring Boot and Angular, focusing 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/ZakariaSaafi/TuniShop.git
+   git clone https://github.com/ZakariaSaafi/tunishop.git
 
 
 # Contributing

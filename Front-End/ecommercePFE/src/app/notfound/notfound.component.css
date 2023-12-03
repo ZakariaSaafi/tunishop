@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+
+*{
+    
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arvo', serif;
+    transition: all .5s;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+.container{
+    position: relative;
+    width: 800px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.container h1{
+    position: relative;
+    top: 40px;
+    color: #2c7bfe;
+    font-size: 5rem;
+    z-index: 1000;
+}
+.container .imgBx{
+    position: relative;
+    width: 810px;
+    height: 500px;
+   /* background: url(assets/images/img.gif);*/
+    bottom: 60px;
+}
+.container .detail{
+    position: relative;
+    top: -70px;
+    color: #2c7bfe;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container .detail h3{
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    margin: 10px;
+}
+.container .detail span{
+    text-transform: lowercase;
+    margin-bottom: 20px;
+}
+.container .detail button{
+    width: 150px;
+    height: 50px;
+    outline: none;
+    border: none;
+    text-transform: capitalize;
+    background: #2c7bfe;
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+.container .detail button:hover{
+    color: #2c7bfe;
+    background: #efefef;
+}

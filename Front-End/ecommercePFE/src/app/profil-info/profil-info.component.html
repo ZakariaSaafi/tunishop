@@ -1,0 +1,114 @@
+<app-header-user *ngIf="service.loggedAcheteur"></app-header-user>  
+<div *ngIf="service.loggedAcheteur">
+<br>
+<br>
+<br>
+<section class="page-header">
+    <div class="overly"></div> 	
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="content text-center">
+            <h1 class="mb-3">Profil</h1>
+            <p>Vous pouvez modifier vos informations</p>
+  
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-transparent justify-content-center">
+              <li class="breadcrumb-item"><a routerLink="/">Page d'accueil</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Profil</li>
+            </ol>
+          </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  <section class="user-dashboard page-wrapper">
+    <div class="container">
+      <div class="row">
+          <div class="col-12 col-md-5 col-sm-12 col-lg-3">
+            <div class="nav flex-column nav-pills" style="vertical-align: middle;position: relative; box-sizing: border-box;">
+              <span class="badge badge-pill badge-danger notify" *ngIf="loadingData">{{commande.length}}</span>
+              <a class="nav-link" routerLink="/order">Commandes</a>
+            </div>
+            <div class="nav flex-column nav-pills">
+              <a class="nav-link" routerLink="/address" >Adresse</a>
+            </div>
+            <div class="nav flex-column nav-pills">
+              <a class="nav-link" routerLink="/profil-info" >Compte</a>
+            </div>
+              <div class="nav flex-column nav-pills">
+                  <a class="nav-link" routerLink="" (click)="logout()">Déconnexion</a>
+              </div>
+          </div>
+  
+        <div class="col-12 col-md-7 col-sm-12 col-lg-9">
+        
+            
+  
+  
+  
+            <div class="tab-pane fade show active" id="settings" role="tabpanel" >
+              <div class="acccount-settings">
+                <h4 class="mb-4">Information</h4>
+                <form [formGroup]="Form">
+                  <div class="form-row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label >Nom</label>
+                        <input type="text" class="form-control" formControlName="nom" placeholder="{{service.currentAcheteur.nom}}">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label >Prénom</label>
+                        <input type="text" class="form-control" formControlName="prenom" placeholder="{{service.currentAcheteur.prenom}}">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group mb-4" hidden>
+                    <label >Adresse Email</label>
+                    <input type="text" class="form-control" formControlName="email" value="{{service.currentAcheteur.email}}">
+                  </div>
+                  <div class="row">
+                    <div class="form-group col mb-4" >
+                      <label >Gouvernorats</label>
+                      <select class="form-control" id="region" (change)="regionChange($event)" formControlName="region">
+                        <option *ngFor="let r of region">{{r.nom}}</option>
+                      </select> 
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label>Adresse</label>
+                        <input type="text" formControlName="adresse" placeholder="{{service.currentAcheteur.adresse}}" class="form-control">
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label>Code Postal</label>
+                        <input type="text" formControlName="codePostal" placeholder="{{service.currentAcheteur.codePostal}}" class="form-control">
+                    </div>
+                  </div> 
+                  <label >Numéro Télephone</label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">+216</span>
+                    </div>
+                    <input type="number" min="20000000" max="99999999" class="form-control"  id="numTel" formControlName="numTel" placeholder="Numéro Télephone"> 
+                  </div>
+                </form>
+
+                  <a [routerLink]="['/address']" (click)="updateInfo(Form.value)" class="btn btn-dark">Enregistrer</a>
+                
+              </div>
+            </div>
+  
+         
+        </div>
+      </div>
+    </div>
+  </section>
+
+<br>
+<br>
+<br>
+</div>

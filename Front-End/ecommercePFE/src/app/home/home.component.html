@@ -1,0 +1,89 @@
+<!-- Impportation des icones-->
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+
+
+<app-header-user *ngIf="service.loggedAcheteur"></app-header-user>  
+<br>
+<!-- ========================= SECTION CAROUSEL ========================= -->
+
+<!-- ========================= SECTION CATEGORY ========================= -->
+<section class="section-main bg padding-y">
+    <section class="section1">
+        <div class="row" style="place-content: center;display: grid;justify-items: center;">
+          <h1  style=" color: #7fd2e2;" *ngIf="service.loggedAcheteur">Bienvenue {{prenom}} {{nom}} </h1>
+          <h2 class="section-heading">Choisissez une catégorie</h2>
+        </div>
+        <br>
+        <div class="row">
+          <div class="column">
+            <div class="card" [routerLink]="['/list-produit',categorie[0].code,categorie[0].matricule]">
+              <div class="icon-wrapper">
+                <i class="fa-solid fa-table-list"></i>
+              </div>
+              <h3>Le plus récent</h3>
+              <p>
+                Vous serez redirigé pour voir les produits les plus récents.
+              </p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="card" [routerLink]="['/list-produit',categorie[1].code,categorie[1].matricule]">
+              <div class="icon-wrapper">
+                <i class="fa-solid fa-car"></i>
+              </div>
+              <h3>Véhicules</h3>
+              <p>
+                Vous serez redirigé pour voir les annonces des véhicules les plus récentes.
+              </p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="card" [routerLink]="['/list-produit',categorie[2].code,categorie[2].matricule]">
+              <div class="icon-wrapper">
+                <i class="fa-solid fa-house-chimney"></i>
+              </div>
+              <h3>Immobilier</h3>
+              <p>
+                Vous serez redirigé pour voir les annonces des immobiliers les plus récentes.
+              </p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="card" [routerLink]="['/list-produit',categorie[3].code,categorie[3].matricule]">
+              <div class="icon-wrapper">
+                <i class="fa-solid fa-desktop"></i>
+              </div>
+              <h3>Informatique et multimédia</h3>
+              <p>
+                Vous serez redirigé pour voir les annonces des produits informatiques et multimédia les plus récentes.
+              </p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="card" [routerLink]="['/list-produit',categorie[4].code,categorie[4].matricule]">
+              <div class="icon-wrapper">
+                <i class="fa-solid fa-gamepad"></i>
+              </div>
+              <h3>Loisirs et Divertissement</h3>
+              <p>
+                Vous serez redirigé pour voir les annonces des produits de loisir les plus récentes.
+              </p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="card" [routerLink]="['/list-produit',categorie[5].code,categorie[5].matricule]">
+              <div class="icon-wrapper">
+                <i class="fa-solid fa-shirt"></i>
+              </div>
+              <h3>Habillement et bien être</h3>
+              <p>
+                Vous serez redirigé pour voir les annonces des produits d'habillement les plus récentes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+  </section>
+  <!-- ========================= SECTION CATEGORY ========================= -->

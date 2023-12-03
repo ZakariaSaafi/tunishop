@@ -1,0 +1,35 @@
+<br>
+<br>
+<br>
+<div class="account section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="login-form border p-5">
+            <div class="text-center heading">
+              <h1 class="mb-2" style="color:#2c7bfe;">Etape 2</h1>
+              <h2 class="mb-2">Ajouter un produit</h2>
+            </div>
+  <br>
+            <form [formGroup]="Form" enctype="multipart/form-data">
+                
+                <div>
+                  <label>Image:   </label>
+                  <input type="file" name="files" accept="image/png, image/jpeg" formControlName="files" multiple (change)="onFileSelected($event)">
+                </div>
+             
+              
+              <br>
+              <button type="submit" [disabled]="!Form.valid" class="btn btn-main mt-3 btn-block"style="background-color: #7fd2e2;color: white"  (click)="onFileUpload(selectedFile,code)">Ajouter produit</button>
+              
+              
+              <!--
+                <a href="#" class="btn btn-main mt-3 btn-block" style="background-color: #4267B2;color: white;">S'inscrire avec Facebook</a>
+                <a href="#" class="btn btn-main mt-3 btn-block" style="background-color: #DB4437;color: white;">S'inscrire avec Google</a>
+              -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

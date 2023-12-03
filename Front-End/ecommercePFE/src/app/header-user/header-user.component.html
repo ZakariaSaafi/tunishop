@@ -1,0 +1,58 @@
+ <!-- ACHETEUR HEADER -->
+  
+
+ <header class="section-header" >
+
+    <section class="header-main border-bottom">
+        <div class="container">
+    <div class="row align-items-center">
+      
+        <a class="navbar-brand" routerLink=''>
+          <img src="assets/images/Tunisie.jpg" alt="" width="30" height="24" class="d-inline-block align-text-left">
+          TuniShop
+        </a>
+      
+        <div class="col-lg-6 col-sm-12">
+            <form action="#" class="search">
+                <div class="input-group w-100">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="submit">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </div>
+                </div>
+            </form> <!-- search-wrap .end// -->
+        </div> <!-- col.// -->
+        <div class="col-lg-4 col-sm-6 col-12">
+            <div class="widgets-wrap float-md-right">
+                <div class="widget-header  mr-3">
+                    <a routerLink='/panier' class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></a>
+                    <span class="badge badge-pill badge-danger notify" *ngIf="loadingDataHeader">{{panier.produits.length}}</span>
+                </div>
+                <div class="widget-header  mr-3">
+                    <a routerLink='/profil-info' class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
+                    <span class="badge badge-pill badge-danger notify" *ngIf="loadingData">{{commande.length}}</span>
+                </div>
+                <div class="widget-header icontext">
+                    <div class="text">
+                        <span class="text-muted">ACHETEUR - </span>  {{prenom}}
+                        <div> 
+                            <a routerLink='' (click)="logoutAcheteur()" >Déconnexion</a>  
+                        </div>
+                    </div>
+                </div>
+    
+            </div> <!-- widgets-wrap.// -->
+        </div> <!-- col.// -->
+    </div> <!-- row.// -->
+        </div> <!-- container.// -->
+    </section> <!-- header-main .// -->
+    
+    
+    
+    
+    
+    </header> 
+    
+    <!-- USER HEADER -->

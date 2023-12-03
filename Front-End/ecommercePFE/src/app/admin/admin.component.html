@@ -1,0 +1,100 @@
+    <!-- Impportation des icones-->
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+        
+    
+    <div class="cardBox">
+    
+            <div class="card">
+                <div>
+                    <div class="numbers">{{vendeur.length}}</div>
+                    <div class="cardName">Vendeurs</div>
+                    <div class="iconBx">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="card">
+                <div>
+                    <div class="numbers">{{acheteur.length}}</div>
+                    <div class="cardName">Acheteurs</div>
+                    <div class="iconBx">
+                        <i class="fa-solid fa-person"></i>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="card">
+                <div>
+                    <div class="numbers">{{livreur.length}}</div>
+                    <div class="cardName">Livreurs</div>
+                    <div class="iconBx">
+                        <i class="fa-solid fa-truck"></i>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="card">
+                <div>
+                    <div class="numbers">0</div>
+                    <div class="cardName">Livraisons</div>
+                    <div class="iconBx">
+                        <i class="fa fa-spinner"></i>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    
+        <!--liste des commandes-->
+    
+        <div class="details" >
+            <div class="recentOrders">
+                <div class="cardHeader">
+                    <h2>Tous les utilisateurs</h2>
+                </div>
+                <div class="alert alert-secondary"  *ngIf="users.length ==0" role="alert" style="height: 50px; width: 24.5%;">
+                    Aucun utilisateur disponible
+                </div>
+                <table *ngIf="loadingData && users.length >0">
+                    <thead style="text-align: center;">
+                        <tr>
+                            <td>ID</td>
+                            <td>Nom</td>
+                            <td>Prénom</td>
+                            <td>E-mail</td>
+                            <td>Enabled</td>
+                            <td>Role</td>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let c of users" style="text-align: center;">
+                        <tr>
+                            <td>#{{c.code}}</td>
+                            <td>{{c.nom}}</td>
+                            <td>{{c.prenom}}</td>
+                            <td>{{c.email}}</td>
+                            <td *ngIf="!c.enabled"><span class="status return ">Non activé</span></td> 
+                            <td *ngIf="c.enabled"><span class="status return ">Activé</span></td> 
+                            <td *ngFor="let r of c.roles">{{r.role}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    
+            <!--New customer-->
+        <div class="popularProduct">
+            <div class="cardHeader">
+                <h2>Live Livraison</h2>
+            </div>
+            <div >
+                <table >
+                    <tr>
+                        <td width="60px"><div class="imgBx"><img src="" alt="Produit_Img"></div></td>
+                        <td><h4>liv 1<br><span>liv 1</span></h4></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        </div>

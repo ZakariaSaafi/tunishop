@@ -1,0 +1,76 @@
+<app-header-user *ngIf="service.loggedAcheteur"></app-header-user>  
+
+<br>
+<br>
+<br>
+  
+    <!-- ========================= SECTION CONTENT ========================= -->
+    
+    
+    <section class="section-content padding-y bg">
+        <div class="container" *ngIf="loadingData">
+    
+        <article  class="card">
+            <div class="card-body">
+                    <div class="row">
+                        <aside class="col-md-6">
+                                <article class="gallery-wrap">
+                                    <div class="card img-big-wrap">
+                                        <a> <img src="data:image/jpeg;base64,{{produit.image}}" alt="produit_photo"></a>
+                                    </div> <!-- card img-big-wrap.// -->
+                                </article> <!-- gallery-wrap .end// -->
+                        </aside>
+                        <main class="col-md-6">
+                            <article>
+                                <a  *ngFor="let c of produit.categories" [routerLink]="['/list-produit',c.code,c.matricule]" class="text-primary btn-link" >{{c.nom}}</a>
+                                <h3 class="title">{{produit.nom}}</h3>
+                               
+        
+                                <hr>
+                    
+                                <div class="mb-3">
+                                    <h6>Description</h6>
+                                    <ul class="list-dots mb-0">
+                                        <p>{{produit.description}}</p>
+                                    </ul>
+                                
+                                </div>
+                                    <div class="widget-header icontext">
+                                        <a routerLink='' class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
+                                        <div class="text">
+                                            <div> 
+                                                <a routerLink='/profil'>{{produit.vendeur.nom}} {{produit.vendeur.prenom}} <i *ngIf="produit.vendeur.enabled" class="fa fa-check"></i> </a>   
+                                                
+                                                    
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                <br>
+                                <br>
+                                <div class="mb-3">
+                                    <var class="price h4">{{produit.prix}} TND</var> <br>
+                                </div> <!-- price-detail-wrap .// -->
+        
+                                <div class="mb-4">
+                                    <a [routerLink]="" class="btn btn-block btn-primary" *ngIf="service.loggedAcheteur" (click)="ajouterAuPanier(service.currentAcheteur.code_ach,produit.code)">Ajouter au panier </a>
+                                    <a [routerLink]="" class="btn btn-block btn-primary"  *ngIf="service.loggedAcheteur" (click)="updatePanier(service.currentAcheteur.code_ach,produit.code)">Mettre à jour le panier </a>
+                                    <a [routerLink]="['/loginAcheteur']" class="btn btn-block btn-primary"  *ngIf="!service.loggedAcheteur">Ajouter au panier</a> 
+                                </div>
+                                
+                            </article> <!-- product-info-aside .// -->
+                        </main> <!-- col.// -->
+                    </div> <!-- row.// -->
+            </div> <!-- card-body.// -->
+        </article>
+
+        </div>
+
+        
+    
+    </section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+
+  <br>
+  <br>
+  <br>

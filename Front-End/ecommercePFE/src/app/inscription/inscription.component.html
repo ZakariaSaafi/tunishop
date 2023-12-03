@@ -1,0 +1,93 @@
+<br>
+<br>
+<br>
+
+<div class="account section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="login-form border p-5">
+            <div class="text-center heading">
+              <h2 class="mb-2">S'inscrire</h2>
+              <p class="lead">Avez-vous déja un compte? <a routerLink="/role" style="background-color: #7fd2e2;color: black;"> S'authentifier</a></p>
+            </div>
+  
+            <form [formGroup]="InscriForm">
+              <div class="form-group mb-4">
+                <label>Adresse E-mail</label>
+                <input type="email" [email]="true" class="form-control" id="email" formControlName="email" placeholder="Saisir votre adresse E-mail">
+                <div class="alert alert-danger" role="alert" *ngIf="InscriForm.controls['email'].dirty && InscriForm.hasError('required','email')">*E-mail est obligatoire</div>  
+                <div class="alert alert-danger" role="alert" *ngIf="isEmailInvalid">*E-mail utilisé, Réssayez avec un autre</div>
+              </div>
+              <div class="form-group mb-4">
+                <label >Nom</label>
+                <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Saisir votre nom d'utilisateur"> 
+                <div class="alert alert-danger" role="alert" *ngIf="InscriForm.controls['nom'].dirty && InscriForm.hasError('required','nom')">*Nom est obligatoire</div>
+              </div>
+              <div class="form-group mb-4">
+                <label >Prenom</label>
+                <input type="text" class="form-control"  id="prenom" formControlName="prenom" placeholder="Saisir votre nom d'utilisateur"> 
+                <div class="alert alert-danger" role="alert" *ngIf="InscriForm.controls['prenom'].dirty && InscriForm.hasError('required','prenom')">*Prenom est obligatoire</div>
+              </div>
+              <div class="form-group mb-4">
+                <label >Role</label>
+                <select class="form-control" id="role" (change)="roleChange($event)" formControlName="role">
+                  <option>ACHETEUR</option>
+                  <option>VENDEUR</option>	
+                  <option>LIVREUR</option>	
+                </select> 
+                <div class="alert alert-danger" role="alert" *ngIf="InscriForm.controls['role'].dirty && InscriForm.hasError('required','role')">*Role est obligatoire</div>
+              </div>
+              <div class="form-group mb-4" *ngIf="selectedRole==='ACHETEUR' || selectedRole==='LIVREUR'">
+                <label >Gouvernorats</label>
+                <select class="form-control" id="region" (change)="regionChange($event)" formControlName="region">
+                  <option *ngFor="let r of region">{{r.nom}}</option>
+                </select> 
+                <div class="alert alert-danger" role="alert" *ngIf="InscriForm.controls['role'].dirty && InscriForm.hasError('required','role')">*Choix obligatoire</div>
+              </div>
+              <div class="form-group mb-4" *ngIf="selectedRole==='ACHETEUR'">
+                <label >Code Postal</label>
+                <input type="text" class="form-control"  id="codePostal" formControlName="codePostal" placeholder="Code Postal"> 
+                <div class="alert alert-danger" role="alert" *ngIf="InscriForm.controls['codePostal'].dirty && InscriForm.hasError('required','codePostal')">*Code Postal est obligatoire</div>
+              </div>
+              <div class="form-group mb-4" *ngIf="selectedRole==='ACHETEUR'">
+                <label >Adresse</label>
+                <input type="text" class="form-control"  id="adresse" formControlName="adresse" placeholder="Adresse"> 
+                <div class="alert alert-danger" role="alert" *ngIf="InscriForm.controls['adresse'].dirty && InscriForm.hasError('required','adresse')">*Adresse est obligatoire</div>
+              </div>
+              <label *ngIf="selectedRole==='ACHETEUR'">Numéro Télephone</label>
+              <div class="input-group mb-3" *ngIf="selectedRole==='ACHETEUR'">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">+216</span>
+                </div>
+                <input type="number" min="20000000" max="99999999" class="form-control"  id="numTel" formControlName="numTel" placeholder="Numéro Télephone"> 
+                <div class="alert alert-danger" role="alert" *ngIf="InscriForm.controls['numTel'].dirty && InscriForm.hasError('required','numTel')">*N° Tel est obligatoire</div>
+              </div>
+              <div class="form-group mb-4">
+                <label >Mot de passe</label>
+                <input type="password" autocomplete="new-password" class="form-control" id="mdp" formControlName="mdp" placeholder="Saisir votre mot de passe"> 
+                <div class="alert alert-danger" role="alert" *ngIf="InscriForm.controls['mdp'].dirty && InscriForm.hasError('required','mdp')">*Mot de passe est obligatoire</div>
+              </div>
+              <div class="form-group">
+                <label >Confirmer mot de passe</label>
+                <input type="password" autocomplete="new-password" class="form-control" id="confirmMdp" formControlName="confirmMdp" placeholder="Confirmer votre mot de passe"> 
+                <div class="alert alert-danger" role="alert" *ngIf="isMdpInvalid">Veuillez saisir un mot de passe correcte</div>
+              </div>
+              <br>
+              <button type="submit" [disabled]="!InscriForm.valid" class="btn btn-main mt-3 btn-block"style="background-color: #7fd2e2;color: white" (click)="onSubmit(InscriForm.value)">S'inscrire</button>
+              
+              
+              <!--
+                <a href="#" class="btn btn-main mt-3 btn-block" style="background-color: #4267B2;color: white;">S'inscrire avec Facebook</a>
+                <a href="#" class="btn btn-main mt-3 btn-block" style="background-color: #DB4437;color: white;">S'inscrire avec Google</a>
+              -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<br>
+<br>
+<br>

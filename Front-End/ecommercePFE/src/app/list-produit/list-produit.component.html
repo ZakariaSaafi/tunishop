@@ -1,0 +1,135 @@
+<app-header-user *ngIf="service.loggedAcheteur"></app-header-user>  
+
+ <!-- ========================= SECTION PAGETOP ========================= -->
+ <section class="section-pagetop bg">
+    <div class="container">
+        <h2 class="title-page">Le plus récent</h2>
+        <nav>
+        <ol class="breadcrumb text-white">
+            <li class="breadcrumb-item"><a routerLink=''>Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Le plus récent</li>
+        </ol>  
+        </nav>
+    </div> <!-- container //  -->
+    </section>
+    <!-- ========================= SECTION INTRO END// ========================= -->
+    
+    <!-- ========================= SECTION CONTENT ========================= -->
+    <section class="section-content padding-y">
+    <div class="container">
+    
+    <div class="row">
+        <aside class="col-md-3">
+            
+    <div class="card">
+        <article class="filter-group">
+            <header class="card-header">
+                <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
+                    <i class="icon-control fa fa-chevron-down"></i>
+                    <h6 class="title">Type de produit</h6>
+                </a>
+            </header>
+            <div class="filter-content collapse show" id="collapse_1" >
+                <div class="card-body">
+                    <form class="pb-3">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Search">
+                      <div class="input-group-append">
+                        <button class="btn btn-light" type="button"><i class="fa fa-search"></i></button>
+                      </div>
+                    </div>
+                    </form>
+                    
+                    <ul class="list-menu" *ngFor="let cat of categorie">
+                    <li><a [routerLink]="['/list-produit',cat.code,cat.matricule]">{{cat.nom}}</a></li>
+                    </ul>
+    
+                </div> <!-- card-body.// -->
+            </div>
+        </article> <!-- filter-group  .// -->
+       
+        <article class="filter-group">
+            <header class="card-header">
+                <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+                    <i class="icon-control fa fa-chevron-down"></i>
+                    <h6 class="title">Filtrage par prix </h6>
+                </a>
+            </header>
+            <div class="filter-content collapse show" id="collapse_3" >
+                <div class="card-body">
+                    <input type="range" class="custom-range" min="0" max="100" name="">
+                    <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>Min</label>
+                      <input class="form-control" placeholder="0 TND" type="number">
+                    </div>
+                    <div class="form-group text-right col-md-6">
+                      <label>Max</label>
+                      <input class="form-control" placeholder="9999 TND" type="number">
+                    </div>
+                    </div> <!-- form-row.// -->
+                    <button class="btn btn-block btn-primary">Valider</button>
+                </div><!-- card-body.// -->
+            </div>
+        </article> <!-- filter-group .// -->
+        
+       
+    </div> <!-- card.// -->
+    
+        </aside> <!-- col.// -->
+        <main class="col-md-9">
+    
+    <header class="border-bottom mb-4 pb-3">
+            <div class="form-inline">
+                <span class="mr-md-auto">{{produit.length}} produits trouvés </span>
+                <div class="btn-group">
+                    <a [routerLink]="['/list-view-produit',categorie[0].code,categorie[0].matricule]" class="btn btn-outline-secondary" data-toggle="tooltip" title="List view"> 
+                        <i class="fa fa-bars"></i></a>
+                    <a [routerLink]="['/list-produit',categorie[0].code,categorie[0].matricule]" class="btn  btn-outline-secondary active" data-toggle="tooltip" title="Grid view"> 
+                        <i class="fa fa-th"></i></a>
+                </div>
+            </div>
+    </header><!-- sect-heading -->
+    
+    <div *ngIf="loadingData && produit.length >0" class="row" >
+        <div class="col-md-4" *ngFor="let p of produit">
+            <figure class="card card-product-grid">
+                <div class="img-wrap"> 
+                    <span class="badge badge-danger" *ngIf="!p.vendu"> NEW </span> 
+                    <span class="badge badge-danger" *ngIf="p.vendu"> VENDU </span> 
+                    <img src="data:image/jpeg;base64,{{p.image}}" alt="produit_Image">
+                    <a class="btn-overlay" [routerLink]="['/produit',p.code]"><i class="fa fa-clipboard"></i>   Détails</a>
+                </div> <!-- img-wrap.// -->
+                <figcaption class="info-wrap">
+                    <div class="fix-height">
+                        <a routerLink='/produit' class="title">{{p.nom}}</a>
+                        <div class="price-wrap mt-2">
+                            <span class="price">{{p.prix}} TND</span>
+                        </div> <!-- price-wrap.// -->
+                    </div>
+                    <a [routerLink]="['/list-produit',categorie[0].code,categorie[0].matricule]" class="btn btn-block btn-primary" *ngIf="service.loggedAcheteur" (click)="ajouterAuPanier(service.currentAcheteur.code_ach,p.code)">Ajouter au panier </a>
+                    <a [routerLink]="['/list-produit',categorie[0].code,categorie[0].matricule]" class="btn btn-block btn-primary"  *ngIf="service.loggedAcheteur" (click)="updatePanier(service.currentAcheteur.code_ach,p.code)">Mettre à jour le panier </a>
+                    <a [routerLink]="['/loginAcheteur']" class="btn btn-block btn-primary"  *ngIf="!service.loggedAcheteur">Ajouter au panier</a> 
+                </figcaption>
+            </figure>
+        </div> <!-- col.// -->
+    </div> <!-- row end.// -->
+    
+    
+    <nav class="mt-4" aria-label="Page navigation sample">
+      <ul class="pagination">
+        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav>
+    
+        </main> <!-- col.// -->
+    
+    </div>
+    
+    </div> <!-- container .//  -->
+    </section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->

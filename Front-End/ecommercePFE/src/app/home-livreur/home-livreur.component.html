@@ -1,0 +1,98 @@
+
+
+<app-notfound *ngIf="!service.loggedLivreur"></app-notfound>
+
+<body *ngIf="service.loggedLivreur">
+
+    <section>
+        <div class="container">
+            <div class="navigation">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="icon"><img src="assets/images/Tunisie.jpg" alt="" width="30" height="24" class="d-inline-block align-text-left"></span>
+                            <span class="title">TuniShop</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['dashboardLivreur', this.code]">
+                            <span class="icon"><i class="fa fa-chart-line"></i></span>
+                            <span class="title">Dashboard</span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink='tachesLivreur'>
+                            <span class="icon"><i class="fa fa-list"></i></span>
+                            <span class="title">Tâches</span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['parametreLivreur', this.code]">
+                            <span class="icon"><i class="fa fa-wrench"></i></span>
+                            <span class="title">Paramètres</span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink='' (click)="logoutLivreur()">
+                            <span class="icon"><i class="fa fa-door-open"></i></span>
+                            <span class="title">Déconnexion</span>
+
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+        <!--main-->
+
+    <section>
+        <div class="main">
+            
+            <div class="topbar">
+                <div class="toggle">
+                    <i class="fa fa-bars"></i>
+                </div>
+                <div class="search">
+                  <h1>Espace Livreur</h1>
+                </div>
+
+                <div class="user" [routerLink]="['parametreLivreur', this.code]">
+                    <img src="assets/images/user.jpg" alt="vendeurImg">
+                </div>
+            </div>
+            
+            <router-outlet></router-outlet>
+        </div>
+
+       
+
+        
+    </section>
+
+<script>
+    //menu toggle
+    let toggle =document.querySelector('.toggle')
+    let navigation =document.querySelector('.navigation')
+    let main =document.querySelector('.main')
+
+    toggle.onclick=function(){
+        navigation.classList.toggle('active')
+    }
+
+    // le bouton selectionné doit être hovered
+    let list=document.querySelectorAll('.navigation li');
+    function activeLink(){
+        list.forEach((item)=>
+        item.classList.remove('hovered'));
+        this.classList.add('hovered');
+    }
+    list.forEach((item)=>
+    item.addEventListener('mouseover',activeLink));
+</script>
+   
+</body>

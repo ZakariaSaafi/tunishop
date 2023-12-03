@@ -1,0 +1,116 @@
+    <!-- Impportation des icones-->
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    
+
+<div class="cardBox">
+
+        <div class="card">
+            <div>
+                <div class="numbers">0</div>
+                <div class="cardName">Ventes</div>
+                <div class="iconBx">
+                    <i class="fa fa-shopping-cart"></i>
+                </div>
+            </div>
+            
+        </div>
+        <div class="card">
+            <div>
+                <div class="numbers">0 TND</div>
+                <div class="cardName">Bénéfices</div>
+                <div class="iconBx">
+                    <i class="fa fa-dollar-sign"></i>
+                </div>
+            </div>
+            
+        </div>
+        <div class="card">
+            <div>
+                <div class="numbers">0</div>
+                <div class="cardName">Commentaires</div>
+                <div class="iconBx">
+                    <i class="fa fa-comment"></i>
+                </div>
+            </div>
+           
+        </div>
+        <div class="card">
+            <div>
+                <div class="numbers">0</div>
+                <div class="cardName">Commandes</div>
+                <div class="iconBx">
+                    <i class="fa fa-spinner"></i>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--liste des commandes-->
+
+    <div class="details" >
+        <div class="recentOrders">
+            <div class="cardHeader">
+                <h2>Tâches disponibles selon la proximité</h2>
+            </div>
+            <div class="alert alert-secondary"  *ngIf="commandeNonLivree.length ==0" role="alert" style="height: 50px; width: 24.5%;">
+                Aucune tâche disponible
+            </div>
+            <table *ngIf="loadingData && commandeNonLivree.length >0">
+                <thead style="text-align: center;">
+                    <tr>
+                        <td>Matricule commande</td>
+                        <td>Gouvernorat</td>
+                        <td>Devis commande</td>
+                        <td>Date de création</td>
+                        <td>Statut</td>
+                        <td>Localisation</td>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let c of commandeNonLivree" style="text-align: center;">
+                    <tr>
+                        <td>#{{c.matricule}}</td>
+                        <td>{{c.region}}</td>
+                        <td>{{c.devis}}</td>
+                        <td>{{c.date | date:'shortDate'}}</td>
+                        <td *ngIf="!c.isDelivered"><span class="status return ">Non livré</span></td> 
+                        <td class="text-center" style="position: relative;justify-content: space-between;align-items: center;border: none;">
+                            <button (click)="getDirection(c.acheteur.adresse,c.region)" class="btn btn-danger btn-xs" style="background-color: rgb(72, 117, 201); " ><i class="fa fa-location-dot"></i> Direction</button>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!--New customer-->
+        <div class="popularProduct">
+            <div class="cardHeader">
+                <h2>Mes Commandes</h2>
+            </div>
+            <table>
+                <tr>
+                    <td width="60px"><div class="imgBx"><img src="assets/images/user.jpg" alt="Produit_Img"></div></td>
+                    <td><h4>Nom_commande <br><span>Nom_Région</span></h4></td>
+                </tr>
+                <tr>
+                    <td width="60px"><div class="imgBx"><img src="assets/images/user.jpg" alt="Produit_Img"></div></td>
+                    <td><h4>Nom_commande<br><span>Nom_Région</span></h4></td>
+                </tr>
+                <tr>
+                    <td width="60px"><div class="imgBx"><img src="assets/images/user.jpg" alt="Produit_Img"></div></td>
+                    <td><h4>Nom_commande <br><span>Nom_Région</span></h4></td>
+                </tr>
+                <tr>
+                    <td width="60px"><div class="imgBx"><img src="assets/images/user.jpg" alt="Produit_Img"></div></td>
+                    <td><h4>Nom_commande <br><span>Nom_Région</span></h4></td>
+                </tr>
+                <tr>
+                    <td width="60px"><div class="imgBx"><img src="assets/images/user.jpg" alt="Produit_Img"></div></td>
+                    <td><h4>Nom_commande <br><span>Nom_Région</span></h4></td>
+                </tr>
+            </table>
+        </div>
+    </div>

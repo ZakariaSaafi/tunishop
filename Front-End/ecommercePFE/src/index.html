@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Tunishop</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <link rel="icon" type="image/x-icon" href="assets/images/Tunisie.jpg">
+  <!-- Custom styles for this template -->
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
+  <link href="assets/css/ui.css" rel="stylesheet">
+  <link href="assets/css/responsive.css" rel="stylesheet">
+ 
+  <link href="assets/css/all.min.css" rel="stylesheet">
+  <script src="assets/js/jquery.min.js" type="text/javascript"></script>
+  <script src="assets/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+  <script>
+    //menu toggle
+    let toggle =document.querySelector('.toggle')
+    let navigation =document.querySelector('.navigation')
+    let main =document.querySelector('.main')
+
+    toggle.onclick=function(){
+        navigation.classList.toggle('active')
+    }
+
+    // le bouton selectionné doit être hovered
+    let list=document.querySelectorAll('.navigation li');
+    function activeLink(){
+        list.forEach((item)=>
+        item.classList.remove('hovered'));
+        this.classList.add('hovered');
+    }
+    list.forEach((item)=>
+    item.addEventListener('mouseover',activeLink));
+</script>
+ 
+</head>
+<body>
+  <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnQQMB0yRvUU4QDA945vIz4x4IhhqZw44&libraries=places"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>  
+  <app-root></app-root>
+</body>
+</html>
+
+

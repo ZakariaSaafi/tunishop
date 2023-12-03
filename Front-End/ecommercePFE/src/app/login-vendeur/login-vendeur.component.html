@@ -1,0 +1,43 @@
+<br>
+<br>
+<br>
+<div class="account section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="login-form border p-5">
+            <div class="text-center heading"> 
+              <h1 class="mb-2" style="color: #7fd2e2;">Espace Vendeur</h1>
+              <br>
+              <h2 class="mb-2">Authentificaion</h2>
+              <br>
+              <p class="lead">Vous n'avez pas de compte? <a routerLink='/inscription'style="background-color: #7fd2e2;color: black;">Inscrivez-vous!</a></p>
+            </div>
+  
+            <form class="form-signin"  [formGroup]="LoginForm">
+              <div class="form-group mb-4">
+                <label>E-mail</label>
+                <input type="email" [email]="true" class="form-control" placeholder="Saisir votre e-mail" formControlName="email">
+                <div class="alert alert-danger" role="alert" *ngIf="LoginForm.controls['email'].dirty && LoginForm.hasError('required','email')">*E-mail est obligatoire</div>
+              </div>
+              <div class="form-group">
+                <label>Mot de passe</label>
+                <a class="float-right" routerLink='/mdp-recovery' style="font-style: italic;font-weight: bold;">Mot de passe oublié?</a>
+                <input type="password" class="form-control" formControlName="mdp" placeholder="Saisir votre mot de passe" > 
+                <div class="alert alert-danger" role="alert" *ngIf="LoginForm.controls['mdp'].dirty && LoginForm.hasError('required','mdp')">*Mot de passe est obligatoire</div>
+              </div>
+              <input type="submit" class="btn btn-main mt-3 btn-block" [disabled]="!LoginForm.valid" style="background-color: #7fd2e2;color: white" (click)="onSubmit(LoginForm.value)" value="Connexion">
+              <div class="alert alert-danger" role="alert" *ngIf="isFormInvalid">Veuillez Saisir vos données</div>
+              <div class="alert alert-danger" role="alert" *ngIf="areCredentialsInvalid">Vérifiez vos données</div>
+              <!--a href="#" class="btn btn-main mt-3 btn-block" style="background-color: #4267B2;color: white;">Connexion avec Facebook</a>
+              <a href="#" class="btn btn-main mt-3 btn-block" style="background-color: #DB4437;color: white;">Connexion avec Google</a--->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<br>
+<br>
+<br>

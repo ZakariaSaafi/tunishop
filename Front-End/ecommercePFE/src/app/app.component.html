@@ -1,0 +1,3 @@
+<app-header *ngIf="service.isLogged===false"></app-header>
+ <router-outlet></router-outlet>
+<app-footer *ngIf="!service.loggedVendeur && !service.loggedLivreur"></app-footer>

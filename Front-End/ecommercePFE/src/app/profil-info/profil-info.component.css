@@ -1,0 +1,6 @@
+/*couleur des boutons */
+.nav-link:hover{
+    background-color: #3167eb;
+    color: white;
+
+}

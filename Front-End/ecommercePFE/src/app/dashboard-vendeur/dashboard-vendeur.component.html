@@ -1,0 +1,94 @@
+    
+    <div class="cardBox">
+
+        <div class="card">
+            <div>
+                <div class="numbers">{{nbrVente}}</div>
+                <div class="cardName">Ventes</div>
+                <div class="iconBx">
+                    <i class="fa fa-shopping-cart"></i>
+                </div>
+            </div>
+            
+        </div>
+        <div class="card">
+            <div>
+                <div class="numbers">{{Wallet}} TND</div>
+                <div class="cardName">Portefeuille</div>
+                <div class="iconBx">
+                    <i class="fa fa-dollar-sign"></i>
+                </div>
+            </div>
+            
+        </div>
+        <div class="card">
+            <div>
+                <div class="numbers">0</div>
+                <div class="cardName">Commentaires</div>
+                <div class="iconBx">
+                    <i class="fa fa-comment"></i>
+                </div>
+            </div>
+           
+        </div>
+        <div class="card">
+            <div>
+                <div class="numbers">{{nbrCommande}}</div>
+                <div class="cardName">Commandes</div>
+                <div class="iconBx">
+                    <i class="fa fa-spinner"></i>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--liste des commandes-->
+
+    <div class="details" >
+        <div class="recentOrders">
+            <div class="cardHeader">
+                <h2>Mes produits</h2>
+                <a [routerLink]="['../../listProduit',this.id]" class="btn">Lister tout</a>
+            </div>
+            <div class="alert alert-secondary" *ngIf="produit.length ==0" role="alert" style="height: 50px; width: 24.5%;">
+                Votre liste de produits est vide
+              </div>
+            <table *ngIf="loadingData && produit.length >0">
+                <thead>
+                    <tr>
+                        <td>Nom</td>
+                        <td>Prix</td>
+                        <td>Quantités restantes</td>
+                        <td>Statut</td>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let p of produit">
+                    <tr>
+                        <td>{{p.nom}}</td>
+                        <td>{{p.prix}} TND</td>
+                        <td *ngIf="p.vendu">0</td>
+                        <td *ngIf="!p.vendu">{{p.quantite}}</td>
+                        <td *ngIf="p.vendu && !p.surCommande"><span class="status delivered ">Repture de quantité</span></td> 
+                        <td *ngIf="!p.vendu && !p.surCommande"><span class="status return ">Disponible</span></td> 
+                        <td *ngIf="p.surCommande"><span class="status pending ">Sur commande</span></td> 
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!--New customer-->
+        <div class="popularProduct">
+            <div class="cardHeader">
+                <h2>Mes produits vendus</h2>
+            </div>
+            <div *ngFor="let p of produit" >
+                <table *ngIf="p.vendu">
+                    <tr>
+                        <td width="60px"><div class="imgBx"><img src="data:image/jpeg;base64,{{p.image}}" alt="Produit_Img"></div></td>
+                        <td><h4>{{p.nom}}<br><span>{{p.prix}}</span></h4></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>

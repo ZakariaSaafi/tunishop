@@ -1,0 +1,182 @@
+<app-header-user *ngIf="service.loggedAcheteur"></app-header-user>  
+<br>
+<div *ngIf="service.loggedAcheteur">
+<section class="section-content padding-y bg">
+  <div class="container">
+     <!-- ============================ CHECKOUT ================================= -->
+<div class="row">
+  <main class="col-md-8">
+
+<article class="card mb-4">
+<div class="card-body">
+<h4 class="card-title mb-4">Produits</h4>
+<div class="row">
+  <div class="col-md-6" *ngFor="let p of produits">
+      <figure class="itemside  mb-4">
+          <div class="aside"><img src="data:image/jpeg;base64,{{p.image}}" alt="produit_img" class="border img-sm"></div>
+          <figcaption class="info">
+              <p>{{p.nom}}</p>
+              <span class="text-muted">{{p.prix}} TND</span>
+          </figcaption>
+      </figure>
+  </div> 
+</div> 
+</div> 
+</article> 
+
+
+<article class="card mb-4">
+<div class="card-body">
+<h4 class="card-title mb-4">Informations</h4>
+<form action="">
+  <div class="row">
+      <div class="form-group col-sm-6">
+          <label>Nom</label>
+          <input type="text" disabled="true" value="{{service.currentAcheteur.nom}}" class="form-control">
+      </div>
+      <div class="form-group col-sm-6">
+          <label>Prénom</label>
+          <input type="text" disabled="true" value="{{service.currentAcheteur.prenom}}" class="form-control">
+      </div>
+      <div class="form-group col-sm-6">
+          <label>Télephone</label>
+          <div class="input-group-prepend" style="align-items: space-between;">
+            <span class="input-group-text">+216</span>
+            <input type="text" placeholder="saisir votre numéro" class="form-control">
+          </div>
+      </div>
+      <div class="form-group col-sm-6">
+          <label>Email</label>
+          <input type="email" disabled="true" value="{{service.currentAcheteur.email}}" class="form-control">
+      </div>
+  </div> 
+</form>
+</div> 
+</article> 
+
+
+<article class="card mb-4">
+<div class="card-body">
+<h4 class="card-title mb-4">Information de livraison</h4>
+<form action="">
+  <div class="row">
+      <div class="form-group col-sm-6">
+          <label class="js-check box">
+              <input type="radio" name="dostavka" value="option1" checked="">
+              <h6 class="title">Livraison</h6>
+              <p class="text-muted">Inclus les frais de livraison</p>
+          </label> 
+      </div>
+      <div class="form-group col-sm-6">
+          <label class="js-check box">
+              <input type="radio" name="dostavka" value="option2">
+              <h6 class="title">Sur place</h6>
+              <p class="text-muted">Recevez vos commandes dans nos magasins</p>
+          </label> 
+      </div>
+  </div>
+      
+
+  <div class="row">
+          <div class="form-group col-sm-4">
+              <label>Gouvernorats</label>
+              <input type="text" disabled="true" value="{{service.currentAcheteur.region}}" class="form-control">
+          </div>
+          <div class="form-group col-sm-4">
+              <label>Adresse</label>
+              <input type="text" disabled="true" value="{{service.currentAcheteur.adresse}}" class="form-control">
+          </div>
+          <div class="form-group col-sm-4">
+              <label>Code Postal</label>
+              <input type="text" disabled="true" value="{{service.currentAcheteur.codePostal}}" class="form-control">
+          </div>
+  </div> 
+</form>
+</div> 
+</article> 
+
+
+<article class="accordion" id="accordion_pay">
+
+
+<div class="card">
+  <header class="card-header">
+      <img src="assets/images/razorpay.png" class="float-right" style="width: 10%;height: 20%;">  
+      <label class="form-check" data-toggle="collapse" data-target="#pay_card">
+          <input class="form-check-input" name="payment-option" checked="" type="radio" value="option1">
+          <h6 class="form-check-label"> RazorPay </h6>
+      </label>
+  </header>
+  <div id="pay_card" class="collapse" data-parent="#accordion_pay">
+      <div class="card-body">
+        <p class="text-center text-muted">Vous pouvez séléctionner le mode de paiement que vous souhaitez avec le service RazorPay </p>
+        <p class="text-center">
+            <button (click)="pay(commande.devis,service.currentAcheteur.prenom,service.currentAcheteur.nom,service.currentAcheteur.email,
+            service.currentAcheteur.numTel)">
+              <img src="assets/images/razorpay.png" height="32">
+            </button>
+            <br><br>
+        </p>
+      </div> 
+  </div> 
+</div> 
+
+<div class="card">
+  <header class="card-header">
+      <img src="assets/images/paymee.jpg" class="float-right" height="80">  
+      <label class="form-check" data-toggle="collapse" data-target="#pay_card">
+          <input class="form-check-input" name="payment-option" type="radio" value="option1">
+          <h6 class="form-check-label"> Paymee </h6>
+      </label>
+  </header>
+  <div id="pay_card" class="collapse" data-parent="#accordion_pay">
+      <div class="card-body">
+        <p class="text-center text-muted">Connecter votre compte Paymee pour continuer votre achat.</p>
+        <p class="text-center">
+            <button (click)="onSubmit()"><img src="assets/images/paymee_button.png" height="32"></button>
+            <br><br>
+        </p>
+      </div> 
+  </div> 
+</div> 
+</article> 
+
+
+  </main> <!-- col.// -->
+  <aside class="col-md-4">
+      <div class="card shadow">
+      <div class="card-body">
+          <h4 class="mb-3">Récapitulatif</h4>
+          <dl class="dlist-align">
+              <dt class="text-muted">Devis</dt>
+              <dd>{{commande.devis}} TND</dd>
+            </dl>
+          <dl class="dlist-align">
+            <dt class="text-muted">Livraison à domicile</dt>
+            <dd>Avec</dd>
+          </dl>
+          <dl class="dlist-align">
+            <dt class="text-muted">Frais de livraison</dt>
+            <dd>7 TND</dd>
+          </dl>
+          <hr>
+          <dl class="dlist-align">
+            <dt>Total:</dt>
+            <dd class="h5">{{commande.devis + 7}} TND</dd>
+          </dl>
+          <hr>
+          <p class="small mb-3 text-muted">Choisissez l'un des modes de paiement pour effectuer votre achat.</p>
+          
+          
+      </div> 
+      </div> 
+  </aside> 
+</div> 
+    <!-- ============================ CHECKOUT END//  ================================= -->
+        
+        
+        
+        
+  </div>
+</section>
+</div>
